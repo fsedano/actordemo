@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sub
+  name: sub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sub
+  template:
+    metadata:
+      annotations:
+        dapr.io/app-id: sub
+        dapr.io/app-port: "8080"
+        dapr.io/enabled: "true"
+        dapr.io/log-level: "debug"
+      labels:
+        app: sub
+    spec:
+      containers:
+      - image: k3d-myregistry.localhost:12345/act1:latest
+        imagePullPolicy: Always
+        command:
+          - /app/sub
+        name: sub
+        resources: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pub
+  name: pub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pub
+  template:
+    metadata:
+      annotations:
+        dapr.io/app-id: pub
+        dapr.io/enabled: "true"
+        dapr.io/log-level: "debug"
+      labels:
+        app: pub
+    spec:
+      containers:
+      - image: k3d-myregistry.localhost:12345/act1:latest
+        imagePullPolicy: Always
+        command:
+          - /app/pub
+        name: pub
+        resources: {}

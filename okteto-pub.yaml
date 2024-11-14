@@ -1,0 +1,6 @@
+dev:
+  pub:
+    command: ["bash"]
+    sync:
+      - .:/app
+    image: golang:1.23
