@@ -37,7 +37,7 @@ dapr client initializing for: 127.0.0.1:50001
 2024/11/14 23:36:49 Get ID
 ```
 
-- Before 10 seconds, kill 'pub'
+- Before 10 seconds, kill 'sub'
 ```
 root@sub-okteto-57d5dfc5fb-xwjv9:/app# cd /app ; go run ./cmd/sub/
 dapr client initializing for: 127.0.0.1:50001
